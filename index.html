@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Priya Weds Ram</title>
+    <!-- Premium Wedding Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CDN -->
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  </head>
+
+  <body class="bg-cream text-maroon overflow-x-hidden">
+    <!-- ===== DIVINE WEDDING LOADER ===== -->
+    <div id="weddingLoader">
+      <!-- OM Stroke SVG -->
+
+      <svg class="loader-om-svg" viewBox="0 0 500 500">
+        <path
+          d="M250 100
+         C180 100 150 170 200 200
+         C140 210 150 290 240 300
+         C320 310 350 250 300 220
+         C370 210 350 120 260 120"
+          fill="none"
+          stroke="#800000"
+          stroke-width="8"
+          stroke-dasharray="8 6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+
+      <!-- Simple Elegant Ganesh SVG -->
+      <div class="loader-ganesh-wrapper">
+        <div class="loader-splash"></div>
+
+        <svg class="ganesh-circle" viewBox="0 0 300 300">
+          <circle
+            cx="150"
+            cy="150"
+            r="120"
+            fill="none"
+            stroke="#800000"
+            stroke-dasharray="8 6"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+        </svg>
+
+        <img src="./assets/Seperators/ganesha.svg" class="loader-ganesh" />
+      </div>
+
+      <div class="loader-text">
+        <span class="en">
+          With Lord Ganesha’s blessings.. <br />
+          Writing Our Story Together…
+        </span>
+        <span class="te telugufont hidden">
+          శ్రీ గణేశుని ఆశీస్సులతో..<br />
+          మన కథను కలిసి రాస్తున్నాము…
+        </span>
+      </div>
+    </div>
+    <!-- Decorative Corner Borders -->
+    <div class="corner top-left"></div>
+    <div class="corner top-right"></div>
+    <div class="corner bottom-left"></div>
+    <div class="corner bottom-right"></div>
+
+    <!-- Mandala Background Layer (FIXED) -->
+    <div class="mandala-bg">
+      <img src="./assets/mandala.svg" alt="Mandala Background" />
+    </div>
+
+    <!-- Falling Petals Container (FIXED) -->
+    <div class="petal-container" id="petalContainer">
+      <span class="petal">🌺</span>
+    </div>
+
+    <!-- Floating Namaste -->
+    <div class="fixed bottom-5 right-5 z-50">
+      <div class="namaste-btn" onclick="playBell()">🙏</div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full text-white z-40">
+      <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <h1 class="text-xl font-bold en">Priya ❤️ Ram</h1>
+        <h1 class="text-xl telugufont te hidden">ప్రియా ❤️ రామ్</h1>
+
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-4">
+          <a href="#story" class="nav-link">
+            <span class="en">Our Story</span>
+            <span class="te telugufont hidden">మన కథ</span>
+          </a>
+
+          <a href="#venue" class="nav-link">
+            <span class="en">Venue</span>
+            <span class="te telugufont hidden">వేదిక</span>
+          </a>
+
+          <a href="#schedule" class="nav-link">
+            <span class="en">Schedule</span>
+            <span class="te telugufont hidden">వివాహ కార్యక్రమాలు</span>
+          </a>
+
+          <a href="#blessings" class="nav-link">
+            <span class="en">Blessings</span>
+            <span class="te telugufont hidden">ఆశీర్వాదాలు</span>
+          </a>
+
+          <a href="#rsvp" class="nav-link">
+            <span class="en">RSVP</span>
+            <span class="te telugufont hidden">హాజరు నిర్ధారణ</span>
+          </a>
+        </div>
+
+        <!-- Language Toggle -->
+        <button id="langToggle" class="bg-gold px-3 py-1 rounded text-sm">
+          తెలుగు
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="nav-links md:hidden hidden" id="mobileMenu">
+        <a href="#story" class="nav-link block" onclick="toggleMenu()"
+          >Our Story</a
+        >
+        <a href="#venue" class="nav-link block" onclick="toggleMenu()">Venue</a>
+        <a href="#schedule" class="nav-link block" onclick="toggleMenu()"
+          >Schedule</a
+        >
+        <a href="#blessings" class="nav-link block" onclick="toggleMenu()"
+          >Blessings</a
+        >
+        <a href="#rsvp" class="nav-link block" onclick="toggleMenu()">RSVP</a>
+      </div>
+    </nav>
+
+    <!-- Mandap Pillars -->
+    <div class="mandap mandap-left"></div>
+    <div class="mandap mandap-right"></div>
+
+    <!-- Hero -->
+    <section class="hero-section">
+      <!-- Rotating Mandala Behind Names -->
+      <div class="name-wrapper">
+        <img src="./assets/mandala.svg" class="name-mandala" alt="Mandala" />
+
+        <h2 class="text-5xl md:text-8xl font-bold fade-in relative z-10">
+          <span class="en">Priya Weds Ram</span>
+          <span class="te telugufont hidden">ప్రియా వివాహం రామ్ తో</span>
+          <img
+            src="./assets/Seperators/Asset 12S logo.svg"
+            class="seperatar"
+            alt="seperatar"
+          />
+        </h2>
+      </div>
+
+      <p class="mt-4 text-xl fade-in">
+        <span class="en">March 15, 2026</span>
+        <span class="te telugufont hidden">మార్చి 15, 2026</span>
+      </p>
+      <div id="countdown" class="mt-6 text-2xl font-semibold"></div>
+    </section>
+
+    <!-- Bride & Groom -->
+    <section id="story" class="text-center">
+      <div class="container-custom">
+        <img
+          src="./assets/Seperators/Asset 6S logo.svg"
+          class="seperatarall"
+          alt="seperatar"
+        />
+        <h3 class="text-4xl mb-5">
+          <span class="en">Bride & Groom</span>
+          <span class="te telugufont hidden">వధువు & వరుడు</span>
+        </h3>
+        <p class="text-2xl"><b>🕉</b></p>
+        <p class="text-2xl mb-5">
+          <span class="en">
+            "With divine grace, as the beginning of a blessed lifelong journey
+            unfolds,
+            <br />
+            <b>two hearts become one</b> — in this sacred and auspicious union"
+          </span>
+
+          <span class="te telugufont hidden">
+            "దైవ కృపతో, నిండు నూరేళ్ల జీవితానికి నాంది పలుకుతూ,
+            <br />
+            <b>రెండు హృదయాలు ఒకటవుతున్నాయి</b> — ఈ పవిత్ర కలయికలో"
+          </span>
+        </p>
+        <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+          <div class="photo-card">
+            <img src="./assets/pic.jpg" alt="Bride" />
+            <h4 class="mt-4 text-2xl">
+              <span class="en">Priya</span>
+              <span class="te telugufont hidden">ప్రియా</span>
+            </h4>
+            <h2 class="mt-2 text-2xl">
+              <span class="en">(Bride)</span>
+              <span class="te telugufont hidden">(వధువు)</span>
+            </h2>
+          </div>
+          <div class="photo-card">
+            <img src="./assets/pic.jpg" alt="Groom" />
+            <h4 class="mt-4 text-2xl">
+              <span class="en">Ram</span>
+              <span class="te telugufont hidden">రామ్</span>
+            </h4>
+            <h2 class="mt-2 text-2xl">
+              <span class="en">(Groom)</span>
+              <span class="te telugufont hidden">(వరుడు)</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Venue -->
+    <section id="venue" class="bg-maroon text-white text-center">
+      <div class="container-custom">
+        <h3 class="text-4xl">
+          <span class="en">Venue</span>
+          <span class="te telugufont hidden">వివాహ వేదిక</span>
+        </h3>
+        <img
+          src="./assets/Seperators/Asset 18S logo.svg"
+          class="seperatarext"
+          alt="seperatar"
+        />
+        <p class="text-xl">SVG Kalyanamandapam</p>
+        <div id="qrcode" class="mt-8 flex justify-center"></div>
+
+        <a
+          href="https://wa.me/?text=Join%20Priya%20and%20Ram%20Wedding%20at%20SVG%20Kalyanamandapam"
+          target="_blank"
+          class="mt-6 inline-block bg-gold text-maroon px-6 py-2 rounded"
+        >
+          <span class="en">Share Location on WhatsApp</span>
+          <span class="te telugufont hidden">వాట్సాప్‌లో స్థలం పంచుకోండి</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Schedule -->
+    <section id="schedule" class="text-center">
+      <div class="container-custom">
+        <h3 class="text-4xl mb-6">
+          <span class="en">Wedding Schedule</span>
+          <span class="te telugufont hidden">వివాహ కార్యక్రమాలు</span>
+        </h3>
+        <p class="text-xl mb-8">
+          <span class="en">Morning Muhurtham & Traditional Rituals</span>
+          <span class="te telugufont hidden">
+            ఉదయం ముహూర్తం & సాంప్రదాయ కార్యక్రమాలు
+          </span>
+        </p>
+
+        <div class="max-w-2xl mx-auto space-y-4">
+          <div
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gold"
+          >
+            <span class="font-semibold">Ganesh Puja</span>
+            <span class="text-maroon">6:00 AM - 6:30 AM</span>
+          </div>
+          <div
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gold"
+          >
+            <span class="font-semibold">Muhurtham</span>
+            <span class="text-maroon">7:00 AM - 8:30 AM</span>
+          </div>
+          <div
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gold"
+          >
+            <span class="font-semibold">Lunch</span>
+            <span class="text-maroon">12:00 PM onwards</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blessings -->
+    <section id="blessings" class="bg-gold text-maroon text-center">
+      <div class="container-custom">
+        <h3 class="text-4xl text-maroon mb-6">
+          <span class="en">Traditional Values & Blessings</span>
+          <span class="te telugufont hidden">
+            సాంప్రదాయ విలువలు & ఆశీర్వాదాలు
+          </span>
+        </h3>
+        <p class="max-w-3xl mx-auto text-lg leading-relaxed">
+          <span class="en"
+            >May this union be blessed with Dharma, Artha, Kama & Moksha. Elders
+            bless the couple with prosperity, harmony, and eternal
+            happiness.</span
+          >
+          <span class="te telugufont hidden">
+            ఈ పవిత్ర కలయిక ధర్మం, అర్థం, కామం, మోక్షంతో నిండి ఉండాలని పెద్దలు
+            ఆశీర్వదిస్తున్నారు. ఐశ్వర్యం, సౌఖ్యం, ఆనందం ఎల్లప్పుడూ వీరిని
+            అలంకరించుగాక.
+          </span>
+        </p>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="text-center">
+      <div class="container-custom">
+        <h3 class="text-4xl mb-6">
+          <span class="en">RSVP</span>
+          <span class="te telugufont hidden">హాజరు నిర్ధారణ</span>
+        </h3>
+        <form
+          action="https://formspree.io/f/your_form_id"
+          method="POST"
+          class="max-w-md mx-auto space-y-4"
+        >
+          <input type="text" name="name" required placeholder="Your Name" />
+          <input type="email" name="email" required placeholder="Your Email" />
+          <select name="attendance">
+            <option value="Attending">Attending</option>
+            <option value="Not Attending">Not Attending</option>
+          </select>
+          <button type="submit" class="bg-maroon text-white px-6 py-2 rounded">
+            <span class="en">Send Blessings</span>
+            <span class="te telugufont hidden">ఆశీర్వాదాలు పంపండి</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center bg-maroon text-white">
+      <div class="container-custom">
+        <span class="en"
+          ><p>© 2026 Priya & Ram Wedding</p>
+          <p class="text-sm mt-2 opacity-75">
+            Designed with ❤️ for the special day from Vishnu
+          </p></span
+        >
+        <span class="te telugufont hidden">
+          <p>© 2026 ప్రియా & రామ్ వివాహం</p>
+          <p class="text-sm mt-2 opacity-75">
+            ఈ ప్రత్యేక శుభదినానికై ప్రేమతో ❤️ విష్ణు రూపాందించబడింది
+          </p>
+        </span>
+      </div>
+    </footer>
+
+    <!-- Audio -->
+    <audio id="templeBell" loop preload="none">
+      <source
+        src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"
+        type="audio/mp3"
+      />
+    </audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>
