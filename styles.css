@@ -157,6 +157,13 @@ body {
 /* ============================= */
 /* TYPOGRAPHY */
 /* ============================= */
+
+@font-face {
+  font-family: "PottiSriramulu";
+  src: url("./assets/fonts/Potti\ Sreeramulu\ Regular.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 h2 {
   font-family: "Great Vibes", cursive;
   font-size: clamp(2.5rem, 8vw, 4rem);
@@ -743,13 +750,6 @@ form select:focus {
 /* ============================= */
 #templeBell {
   display: none;
-}
-@font-face {
-  font-family: "PottiSriramulu";
-  src: url("../Invitation/assets/fonts/Potti\ Sreeramulu\ Regular.otf")
-    format("truetype");
-  font-weight: normal;
-  font-style: normal;
 }
 
 .telugufont {
