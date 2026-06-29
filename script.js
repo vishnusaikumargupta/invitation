@@ -67,41 +67,87 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ==============================
   // Language Toggle
+  // const toggleBtn = document.getElementById("langToggle");
+  // let isEnglish = true;
+
+  // if (toggleBtn) {
+  //   toggleBtn.addEventListener("click", () => {
+  //     document
+  //       .querySelectorAll(".en")
+  //       .forEach((el) => el.classList.toggle("hidden"));
+  //     document
+  //       .querySelectorAll(".te")
+  //       .forEach((el) => el.classList.toggle("hidden"));
+  //     toggleBtn.textContent = isEnglish ? "English" : "తెలుగు";
+  //     isEnglish = !isEnglish;
+  //   });
+  // }
   // ==============================
   const toggleBtn = document.getElementById("langToggle");
-  let isEnglish = true;
+  let isEnglish = false; // Telugu is default
+
+  // Hide English on load
+  document.querySelectorAll(".en").forEach((el) => el.classList.add("hidden"));
+  document
+    .querySelectorAll(".te")
+    .forEach((el) => el.classList.remove("hidden"));
+
+  if (window.redrawScratchCard) window.redrawScratchCard();
 
   if (toggleBtn) {
+    toggleBtn.textContent = "English";
+
     toggleBtn.addEventListener("click", () => {
       document
         .querySelectorAll(".en")
         .forEach((el) => el.classList.toggle("hidden"));
+
       document
         .querySelectorAll(".te")
         .forEach((el) => el.classList.toggle("hidden"));
+
       toggleBtn.textContent = isEnglish ? "English" : "తెలుగు";
       isEnglish = !isEnglish;
+      if (window.redrawScratchCard) window.redrawScratchCard();
     });
   }
 
   // ==============================
   // Countdown
   // ==============================
-  const countdownEl = document.getElementById("countdown");
-  const weddingDate = new Date("March 15, 2026 00:00:00").getTime();
+const weddingDate = new Date("August 26, 2026 09:25:00").getTime();
 
-  if (countdownEl) {
-    setInterval(() => {
-      const diff = weddingDate - Date.now();
-      if (diff <= 0) return;
+setInterval(() => {
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / 1000 / 60) % 60);
+    const diff = weddingDate - Date.now();
 
-      countdownEl.innerHTML = `${days} Days ${hours} Hours ${mins} Minutes`;
-    }, 1000);
-  }
+    if(diff <= 0){
+
+        document.getElementById("days").textContent="00";
+        document.getElementById("hours").textContent="00";
+        document.getElementById("minutes").textContent="00";
+        document.getElementById("seconds").textContent="00";
+
+        return;
+    }
+
+    const days=Math.floor(diff/(1000*60*60*24));
+
+    const hours=Math.floor((diff/(1000*60*60))%24);
+
+    const minutes=Math.floor((diff/(1000*60))%60);
+
+    const seconds=Math.floor((diff/1000)%60);
+
+    document.getElementById("days").textContent=String(days).padStart(2,"0");
+
+    document.getElementById("hours").textContent=String(hours).padStart(2,"0");
+
+    document.getElementById("minutes").textContent=String(minutes).padStart(2,"0");
+
+    document.getElementById("seconds").textContent=String(seconds).padStart(2,"0");
+
+},1000);
 
   // ==============================
   // Petal Generator 🌺
@@ -228,3 +274,111 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("orientationchange", setVH);
   setVH();
 });
+
+const canvas = document.getElementById("scratchCanvas");
+
+if (canvas) {
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+
+  function drawScratchCard() {
+    // Clear previous drawing
+    ctx.globalCompositeOperation = "source-over";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Golden cover
+    ctx.fillStyle = "#dbb024";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#fff";
+    ctx.textAlign = "center";
+    const isTelugu = !document.querySelector(".te").classList.contains("hidden");
+
+    if (isTelugu) {
+      ctx.font = "bold 22px PottiSriramulu Sans Telugu";
+
+      ctx.fillText(
+        "ఇక్కడ స్క్రాచ్ చేయండి",
+        canvas.width / 2,
+        canvas.height / 2 - 10
+      );
+
+      ctx.font = "18px PottiSriramulu Sans Telugu";
+
+      ctx.fillText(
+        "🎉 మా వివాహ తేదీని చూడండి 🎉",
+        canvas.width / 2,
+        canvas.height / 2 + 30
+      );
+
+    } else {
+
+      ctx.font = "bold 26px Poppins";
+
+      ctx.fillText(
+        "Scratch Here",
+        canvas.width / 2,
+        canvas.height / 2 - 10
+      );
+
+      ctx.font = "18px Poppins";
+
+      ctx.fillText(
+        "🎉 Reveal Wedding Date 🎉",
+        canvas.width / 2,
+        canvas.height / 2 + 30
+      );
+    }
+  }
+
+  drawScratchCard();
+
+  let scratching = false;
+
+  function scratch(x, y) {
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.beginPath();
+    ctx.arc(x, y, 25, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+
+    if (e.touches) {
+      return {
+        x: e.touches[0].clientX - rect.left,
+        y: e.touches[0].clientY - rect.top,
+      };
+    }
+
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    };
+  }
+
+  canvas.addEventListener("mousedown", () => scratching = true);
+  canvas.addEventListener("mouseup", () => scratching = false);
+  canvas.addEventListener("mouseleave", () => scratching = false);
+
+  canvas.addEventListener("mousemove", (e) => {
+    if (!scratching) return;
+    const pos = getPos(e);
+    scratch(pos.x, pos.y);
+  });
+
+  canvas.addEventListener("touchstart", () => scratching = true);
+  canvas.addEventListener("touchend", () => scratching = false);
+
+  canvas.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    const pos = getPos(e);
+    scratch(pos.x, pos.y);
+  });
+
+  // Make it accessible globally
+  window.redrawScratchCard = drawScratchCard;
+}
