@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -72,7 +72,7 @@
         </span>
         <span class="te telugufont hidden">
           శ్రీ గణేశుని ఆశీస్సులతో..<br />
-          మన కథను కలిసి రాస్తున్నాము…
+          మన కథను కలిసి రాస్తున్నాము...
         </span>
       </div>
     </div>
@@ -83,6 +83,9 @@
     <div class="corner bottom-right"></div>
 
     <!-- Mandala Background Layer (FIXED) -->
+    <div class="mandala-bg-top">
+      <img src="./assets/mandala.svg" alt="Mandala Background" />
+    </div>
     <div class="mandala-bg">
       <img src="./assets/mandala.svg" alt="Mandala Background" />
     </div>
@@ -100,11 +103,13 @@
     <!-- Navbar -->
     <nav class="fixed w-full text-white z-40">
       <div class="max-w-6xl mx-auto flex justify-between items-center">
-        <h1 class="text-xl font-bold en">Priya ❤️ Ram</h1>
-        <h1 class="text-xl telugufont te hidden">ప్రియా ❤️ రామ్</h1>
+        <h1 class="text-xl font-bold en">Priya ❤️ Nikilesh</h1>
+        <h1 class="text-xl telugufont te hidden">ప్రియా ❤️ నిఖిలేష్</h1>
 
         <!-- Mobile Menu Button -->
-        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        <button class="md:hidden text-3xl p-2" onclick="toggleMenu()">
+          ☰
+        </button>
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-4">
@@ -136,12 +141,15 @@
 
         <!-- Language Toggle -->
         <button id="langToggle" class="bg-gold px-3 py-1 rounded text-sm">
-          తెలుగు
+          English
         </button>
       </div>
 
       <!-- Mobile Menu -->
-      <div class="nav-links md:hidden hidden" id="mobileMenu">
+      <div
+        class="hidden md:hidden bg-maroon text-white w-full absolute left-0 top-full shadow-lg"
+        id="mobileMenu"
+      >
         <a href="#story" class="nav-link block" onclick="toggleMenu()"
           >Our Story</a
         >
@@ -167,8 +175,9 @@
         <img src="./assets/mandala.svg" class="name-mandala" alt="Mandala" />
 
         <h2 class="text-5xl md:text-8xl font-bold fade-in relative z-10">
-          <span class="en">Priya Weds Ram</span>
-          <span class="te telugufont hidden">ప్రియా వివాహం రామ్ తో</span>
+          <span class="en">Priya Weds Nikilesh</span>
+          <!-- <span class="te telugufont hidden">ప్రియా వివాహం నిఖిలేష్ తో</span> -->
+          <span class="te telugufont hidden">ప్రియా నిఖిలేష్ ల కళ్యాణం</span>
           <img
             src="./assets/Seperators/Asset 12S logo.svg"
             class="seperatar"
@@ -178,10 +187,99 @@
       </div>
 
       <p class="mt-4 text-xl fade-in">
-        <span class="en">March 15, 2026</span>
-        <span class="te telugufont hidden">మార్చి 15, 2026</span>
+        <span class="en text-4xl font-bold">August 26, 2026</span>
+        <span class="te telugufont hidden text-4xl font-bold"
+          >ఆగస్టు 26, 2026</span
+        >
       </p>
-      <div id="countdown" class="mt-6 text-2xl font-semibold"></div>
+    </section>
+    <section id="scratch-card" class="py-20 text-center">
+      <div class="container-custom">
+        <h3 class="text-4xl mb-8">
+          <span class="en">🎁 Our forever begins 🎁</span>
+          <span class="te telugufont hidden"
+            >🎁 జీవితం మొదలవుతున్న సమయం 🎁</span
+          >
+        </h3>
+
+        <div class="scratch-wrapper">
+          <div class="scratch-content">
+            <h2 class="en text-3xl font-bold">You're Invited!</h2>
+            <h2 class="te telugufont hidden text-3xl font-bold">
+              మీరు ఆహ్వానించబడ్డారు!
+            </h2>
+
+            <h2 class="mt-4 text-4xl">
+              <span class="en text-4xl">26 August 2026</span>
+              <span class="te telugufont hidden text-3xl">26 ఆగస్టు 2026</span>
+            </h2>
+
+            <p class="mt-3 text-xl">
+              <span class="en text-xl">Wednesday morning 9:25 Onwards</span>
+              <span class="te telugufont hidden text-2xl"
+                >బుధవారం ఉదయం 9:25 నుండి</span
+              >
+            </p>
+          </div>
+
+          <canvas id="scratchCanvas"></canvas>
+        </div>
+      </div>
+    </section>
+    <!-- Countdown -->
+    <section
+      id="countdown-section"
+      class="py-20 bg-maroon text-white text-center"
+    >
+      <div class="container-custom">
+        <h2 class="text-4xl mb-3">
+          <span class="en colors">❤️ Countdown to Forever ❤️</span>
+          <span class="te telugufont hidden colors">మన కలయికకు ఇంకా...❤️</span>
+        </h2>
+
+        <p class="mb-12 opacity-80">
+          <span class="en"
+            >Every second brings us closer to our special day.</span
+          >
+          <span class="te telugufont hidden">
+            ప్రతి క్షణం మా శుభముహూర్తానికి మరింత చేరువ చేస్తోంది.
+          </span>
+        </p>
+
+        <div class="countdown-grid">
+          <div class="count-box">
+            <div class="count-number" id="days">00</div>
+            <p>
+              <span class="en">Days</span>
+              <span class="te telugufont hidden">రోజులు</span>
+            </p>
+          </div>
+
+          <div class="count-box">
+            <div class="count-number" id="hours">00</div>
+            <p>
+              <span class="en">Hours</span>
+              <span class="te telugufont hidden">గంటలు</span>
+            </p>
+          </div>
+
+          <div class="count-box">
+            <div class="count-number" id="minutes">00</div>
+            <p>
+              <span class="en">Minutes</span>
+              <span class="te telugufont hidden">నిమిషాలు</span>
+            </p>
+          </div>
+
+          <div class="count-box">
+            <div class="count-number" id="seconds">00</div>
+            <p>
+              <span class="en">Seconds</span>
+              <span class="te telugufont hidden">సెకన్లు</span>
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Bride & Groom -->
@@ -213,25 +311,25 @@
         </p>
         <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
           <div class="photo-card">
-            <img src="./assets/pic.jpg" alt="Bride" />
+            <img src="./assets/nikil.jpg" alt="Groom" />
             <h4 class="mt-4 text-2xl">
-              <span class="en">Priya</span>
-              <span class="te telugufont hidden">ప్రియా</span>
-            </h4>
-            <h2 class="mt-2 text-2xl">
-              <span class="en">(Bride)</span>
-              <span class="te telugufont hidden">(వధువు)</span>
-            </h2>
-          </div>
-          <div class="photo-card">
-            <img src="./assets/pic.jpg" alt="Groom" />
-            <h4 class="mt-4 text-2xl">
-              <span class="en">Ram</span>
-              <span class="te telugufont hidden">రామ్</span>
+              <span class="en">Nikilesh Sai</span>
+              <span class="te telugufont hidden">నిఖిలేష్ సాయి</span>
             </h4>
             <h2 class="mt-2 text-2xl">
               <span class="en">(Groom)</span>
               <span class="te telugufont hidden">(వరుడు)</span>
+            </h2>
+          </div>
+          <div class="photo-card">
+            <img src="./assets/priya.jpg" alt="Bride" />
+            <h4 class="mt-4 text-2xl">
+              <span class="en">Dharani Priya</span>
+              <span class="te telugufont hidden">ధరణి ప్రియా</span>
+            </h4>
+            <h2 class="mt-2 text-2xl">
+              <span class="en">(Bride)</span>
+              <span class="te telugufont hidden">(వధువు)</span>
             </h2>
           </div>
         </div>
@@ -250,11 +348,15 @@
           class="seperatarext"
           alt="seperatar"
         />
-        <p class="text-xl">SVG Kalyanamandapam</p>
+        <p class="text-xl">Sri Lakshmi Srinivasa Function Hall</p>
+        <p class="text-xxl">
+          Above Thanisq Gold, Annamayya Circle, Opp to Tejeswini grand, Nellore,
+          Andhra Pradesh 524003
+        </p>
         <div id="qrcode" class="mt-8 flex justify-center"></div>
 
         <a
-          href="https://wa.me/?text=Join%20Priya%20and%20Ram%20Wedding%20at%20SVG%20Kalyanamandapam"
+          href="https://wa.me/?text=Join%20Priya%20and%20Nikilesh%20Wedding%20at%20Sri%20Lakshmi%20Srinivasa%20Function%20Hall%0A%0AVenue%20Location%3A%20https%3A%2F%2Fmaps.app.goo.gl%2FT5r7Jf4ZJxZn811J9"
           target="_blank"
           class="mt-6 inline-block bg-gold text-maroon px-6 py-2 rounded"
         >
@@ -333,7 +435,7 @@
           <span class="te telugufont hidden">హాజరు నిర్ధారణ</span>
         </h3>
         <form
-          action="https://formspree.io/f/your_form_id"
+          action="https://formspree.io/f/xdalrvld"
           method="POST"
           class="max-w-md mx-auto space-y-4"
         >
@@ -355,13 +457,13 @@
     <footer class="py-10 text-center bg-maroon text-white">
       <div class="container-custom">
         <span class="en"
-          ><p>© 2026 Priya & Ram Wedding</p>
+          ><p>© 2026 Priya & Nikilesh Wedding</p>
           <p class="text-sm mt-2 opacity-75">
             Designed with ❤️ for the special day from Vishnu
           </p></span
         >
         <span class="te telugufont hidden">
-          <p>© 2026 ప్రియా & రామ్ వివాహం</p>
+          <p>© 2026 ప్రియా & నిఖిలేష్ వివాహం</p>
           <p class="text-sm mt-2 opacity-75">
             ఈ ప్రత్యేక శుభదినానికై ప్రేమతో ❤️ విష్ణు రూపాందించబడింది
           </p>
