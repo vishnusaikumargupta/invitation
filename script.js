@@ -55,6 +55,37 @@ document.addEventListener("DOMContentLoaded", function () {
     if (bell) bell.play().catch(() => {});
   };
 
+  // BGM auto-play on first user interaction
+  let bgmStarted = false;
+  const bgm = document.getElementById("bgm");
+
+  function startBGM() {
+    if (!bgmStarted && bgm) {
+      bgm.volume = 0.9;
+      bgm.play().catch(() => {});
+      bgmStarted = true;
+    }
+    document.removeEventListener("click", startBGM);
+    document.removeEventListener("touchstart", startBGM);
+  }
+  document.addEventListener("click", startBGM);
+  document.addEventListener("touchstart", startBGM);
+
+  window.toggleBGM = function () {
+    if (!bgm) return;
+    const iconOn  = document.getElementById("iconSpeakerOn");
+    const iconOff = document.getElementById("iconSpeakerOff");
+    if (bgm.paused) {
+      bgm.play().catch(() => {});
+      iconOn.classList.remove("hidden");
+      iconOff.classList.add("hidden");
+    } else {
+      bgm.pause();
+      iconOn.classList.add("hidden");
+      iconOff.classList.remove("hidden");
+    }
+  };
+
   // ==============================
   // Resize Fix
   // ==============================
@@ -283,13 +314,23 @@ if (canvas) {
   canvas.width = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
 
+  let celebrationTriggered = false;
+  let lastCheckTime = 0;
+
   function drawScratchCard() {
     // Clear previous drawing
     ctx.globalCompositeOperation = "source-over";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Reset celebration so it works fresh after a language switch
+    celebrationTriggered = false;
+
     // Golden cover
-    ctx.fillStyle = "#dbb024";
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(1, "hsl(40, 65%, 55%)");
+    gradient.addColorStop(0, "hsl(39, 68%, 68%)");
+    gradient.addColorStop(1, "hsl(40, 72%, 46%)");
+    ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "#fff";
@@ -368,6 +409,7 @@ if (canvas) {
     if (!scratching) return;
     const pos = getPos(e);
     scratch(pos.x, pos.y);
+    throttledCheck();
   });
 
   canvas.addEventListener("touchstart", () => scratching = true);
@@ -377,7 +419,91 @@ if (canvas) {
     e.preventDefault();
     const pos = getPos(e);
     scratch(pos.x, pos.y);
+    throttledCheck();
   });
+
+  // ==============================
+  // Scratch Progress & Celebration
+  // ==============================
+
+  function getScratchedPercent() {
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = imageData.data;
+    let transparent = 0;
+    for (let i = 3; i < pixels.length; i += 4) {
+      if (pixels[i] === 0) transparent++;
+    }
+    return (transparent / (pixels.length / 4)) * 100;
+  }
+
+  function launchConfetti() {
+    const colors = ["#FFD700","#FF6B6B","#4CAF50","#9C27B0","#FF9800","#00BCD4","#E91E63","#ffffff"];
+    const rect = canvas.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    for (let i = 0; i < 80; i++) {
+      const p = document.createElement("div");
+      const size = 6 + Math.random() * 8;
+      p.style.cssText = `
+        position:fixed;
+        width:${size}px;height:${size}px;
+        background:${colors[Math.floor(Math.random() * colors.length)]};
+        border-radius:${Math.random() > 0.5 ? "50%" : "2px"};
+        left:${cx}px;top:${cy}px;
+        pointer-events:none;z-index:9999;
+        transform:rotate(${Math.random() * 360}deg);
+      `;
+      document.body.appendChild(p);
+
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 150 + Math.random() * 250;
+      const vx = Math.cos(angle) * speed;
+      const vy = Math.sin(angle) * speed - 220;
+      const duration = 1200 + Math.random() * 800;
+      const start = performance.now();
+
+      (function animate(now) {
+        const t = (now - start) / duration;
+        if (t >= 1) { p.remove(); return; }
+        p.style.left = (cx + vx * t) + "px";
+        p.style.top  = (cy + vy * t + 450 * t * t) + "px";
+        p.style.opacity = 1 - t;
+        requestAnimationFrame(animate);
+      })(performance.now());
+    }
+  }
+
+  function triggerCelebration() {
+    if (celebrationTriggered) return;
+    celebrationTriggered = true;
+
+    // Clear the full gold cover
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Zoom in/out pulse on the scratch content
+    const content = document.querySelector(".scratch-content");
+    if (content && typeof gsap !== "undefined") {
+      gsap.fromTo(
+        content,
+        { scale: 1 },
+        { scale: 1.18, duration: 0.35, ease: "power2.out", yoyo: true, repeat: 5 }
+      );
+    }
+
+    // Three waves of confetti
+    launchConfetti();
+    setTimeout(launchConfetti, 350);
+    setTimeout(launchConfetti, 700);
+  }
+
+  function throttledCheck() {
+    const now = Date.now();
+    if (now - lastCheckTime < 120) return;
+    lastCheckTime = now;
+    if (getScratchedPercent() >= 40) triggerCelebration();
+  }
 
   // Make it accessible globally
   window.redrawScratchCard = drawScratchCard;
