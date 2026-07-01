@@ -924,3 +924,44 @@ html {
 }
 
 }
+.saptapadi-card{
+    background:#fffdf7;
+    border:2px solid #D4AF37;
+    border-radius:24px;
+    padding:45px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+    position:relative;
+}
+
+.saptapadi-card::before{
+    content:"🕉";
+    position:absolute;
+    top:-20px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:34px;
+    background:#fffdf7;
+    padding:0 10px;
+}
+
+.saptapadi-card p{
+    margin:18px 0;
+    font-size:1.35rem;
+    line-height:1.8;
+}
+
+.saptapadi-card strong{
+    color:#8B0000;
+}
+
+@media(max-width:768px){
+
+.saptapadi-card{
+    padding:25px;
+}
+
+.saptapadi-card p{
+    font-size:1.1rem;
+}
+
+}
