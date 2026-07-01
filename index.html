@@ -95,6 +95,52 @@
       <span class="petal">🌺</span>
     </div>
 
+    <!-- Floating BGM Toggle -->
+    <div class="fixed bottom-5 left-5 z-50">
+      <button
+        id="bgmToggleBtn"
+        onclick="toggleBGM()"
+        class="namaste-btn"
+        title="Toggle Music"
+      >
+        <!-- Speaker On -->
+        <svg
+          id="iconSpeakerOn"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <!-- Speaker Muted -->
+        <svg
+          id="iconSpeakerOff"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="hidden"
+        >
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+      </button>
+    </div>
+
     <!-- Floating Namaste -->
     <div class="fixed bottom-5 right-5 z-50">
       <div class="namaste-btn" onclick="playBell()">🙏</div>
@@ -186,12 +232,10 @@
         </h2>
       </div>
 
-      <p class="mt-4 text-xl fade-in">
-        <span class="en text-4xl font-bold">August 26, 2026</span>
-        <span class="te telugufont hidden text-4xl font-bold"
-          >ఆగస్టు 26, 2026</span
-        >
-      </p>
+      <!-- <p class="mt-4 text-xl fade-in">
+        <span class="en text-4xl font-bold">---</span>
+        <span class="te telugufont hidden text-4xl font-bold">---</span>
+      </p> -->
     </section>
     <section id="scratch-card" class="py-20 text-center">
       <div class="container-custom">
@@ -311,17 +355,6 @@
         </p>
         <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
           <div class="photo-card">
-            <img src="./assets/nikil.jpg" alt="Groom" />
-            <h4 class="mt-4 text-2xl">
-              <span class="en">Nikilesh Sai</span>
-              <span class="te telugufont hidden">నిఖిలేష్ సాయి</span>
-            </h4>
-            <h2 class="mt-2 text-2xl">
-              <span class="en">(Groom)</span>
-              <span class="te telugufont hidden">(వరుడు)</span>
-            </h2>
-          </div>
-          <div class="photo-card">
             <img src="./assets/priya.jpg" alt="Bride" />
             <h4 class="mt-4 text-2xl">
               <span class="en">Dharani Priya</span>
@@ -330,6 +363,17 @@
             <h2 class="mt-2 text-2xl">
               <span class="en">(Bride)</span>
               <span class="te telugufont hidden">(వధువు)</span>
+            </h2>
+          </div>
+          <div class="photo-card">
+            <img src="./assets/nikil.jpg" alt="Groom" />
+            <h4 class="mt-4 text-2xl">
+              <span class="en">Nikilesh Sai</span>
+              <span class="te telugufont hidden">నిఖిలేష్ సాయి</span>
+            </h4>
+            <h2 class="mt-2 text-2xl">
+              <span class="en">(Groom)</span>
+              <span class="te telugufont hidden">(వరుడు)</span>
             </h2>
           </div>
         </div>
@@ -348,61 +392,310 @@
           class="seperatarext"
           alt="seperatar"
         />
-        <p class="text-xl">Sri Lakshmi Srinivasa Function Hall</p>
-        <p class="text-xxl">
+        <br />
+        <p class="text-2xl en font-semibold">
+          Sri Lakshmi Srinivasa Function Hall
+        </p>
+        <p class="te telugufont hidden text-4xl">
+          శ్రీ లక్ష్మీ శ్రీనివాస ఫంక్షన్ హాల్
+        </p>
+        <p class="text-xxl en">
           Above Thanisq Gold, Annamayya Circle, Opp to Tejeswini grand, Nellore,
           Andhra Pradesh 524003
         </p>
+        <p class="te telugufont hidden text-2xl">
+          తనిష్క్ గోల్డ్ పైన , అన్నమయ్య సర్కిల్, తేజేస్విని గ్రాండ్ కు ఎదురుగా,
+          నెల్లూరు, ఆంధ్రప్రదేశ్ 524003
+        </p>
+
         <div id="qrcode" class="mt-8 flex justify-center"></div>
 
-        <a
-          href="https://wa.me/?text=Join%20Priya%20and%20Nikilesh%20Wedding%20at%20Sri%20Lakshmi%20Srinivasa%20Function%20Hall%0A%0AVenue%20Location%3A%20https%3A%2F%2Fmaps.app.goo.gl%2FT5r7Jf4ZJxZn811J9"
-          target="_blank"
-          class="mt-6 inline-block bg-gold text-maroon px-6 py-2 rounded"
-        >
-          <span class="en">Share Location on WhatsApp</span>
-          <span class="te telugufont hidden">వాట్సాప్‌లో స్థలం పంచుకోండి</span>
-        </a>
+        <div class="mt-6 flex flex-wrap justify-center gap-4">
+          <a
+            href="https://maps.app.goo.gl/T5r7Jf4ZJxZn811J9"
+            target="_blank"
+            class="inline-flex items-center gap-2 bg-gold text-maroon px-6 py-2 rounded font-semibold"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+              ></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="en">Get Directions</span>
+            <span class="te telugufont hidden">దిశలు పొందండి</span>
+          </a>
+
+          <a
+            href="https://wa.me/?text=Join%20Priya%20and%20Nikilesh%20Wedding%20at%20Sri%20Lakshmi%20Srinivasa%20Function%20Hall%0A%0AVenue%20Location%3A%20https%3A%2F%2Fmaps.app.goo.gl%2FT5r7Jf4ZJxZn811J9"
+            target="_blank"
+            class="inline-block bg-gold text-maroon px-6 py-2 rounded font-semibold"
+          >
+            <span class="en">Share Location on WhatsApp</span>
+            <span class="te telugufont hidden"
+              >వాట్సాప్‌లో స్థలం పంచుకోండి</span
+            >
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- Schedule -->
     <section id="schedule" class="text-center">
       <div class="container-custom">
+        <div class="flex justify-center mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#800000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
         <h3 class="text-4xl mb-6">
           <span class="en">Wedding Schedule</span>
           <span class="te telugufont hidden">వివాహ కార్యక్రమాలు</span>
         </h3>
-        <p class="text-xl mb-8">
-          <span class="en">Morning Muhurtham & Traditional Rituals</span>
-          <span class="te telugufont hidden">
-            ఉదయం ముహూర్తం & సాంప్రదాయ కార్యక్రమాలు
-          </span>
-        </p>
 
-        <div class="max-w-2xl mx-auto space-y-4">
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <!-- Reception -->
           <div
-            class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gold"
+            class="border border-gold rounded-xl p-6 text-left"
+            style="background-color: #d4af37"
           >
-            <span class="font-semibold">Ganesh Puja</span>
-            <span class="text-maroon">6:00 AM - 6:30 AM</span>
+            <h4 class="text-2xl font-bold mb-1">
+              <span class="en">🌟 Reception</span>
+              <span class="te telugufont hidden"
+                >🌟 వేడుక స్వాగత కార్యక్రమం</span
+              >
+            </h4>
+            <p class="text-base opacity-75 mb-4">
+              <span class="en">25th August 2026</span>
+              <span class="te telugufont hidden text-xl">25 ఆగస్టు 2026</span>
+            </p>
+            <div class="space-y-3">
+              <div
+                class="flex justify-between items-center border-b border-gold pb-2"
+              >
+                <span class="font-semibold">
+                  <span class="en">Reception</span>
+                  <span class="te telugufont hidden text-xl"
+                    >స్వాగత కార్యక్రమం</span
+                  >
+                </span>
+                <span class="text-maroon text-sm">
+                  <span class="en">6:00 PM Onwards</span>
+                  <span class="te telugufont hidden text-xl"
+                    >సాయంత్రం 6:00 నుండి</span
+                  >
+                </span>
+              </div>
+              <div
+                class="flex justify-between items-center border-b border-gold pb-2"
+              >
+                <span class="font-semibold">
+                  <span class="en">Dinner</span>
+                  <span class="te telugufont hidden text-xl">విందు</span>
+                </span>
+                <span class="text-maroon text-sm">
+                  <span class="en">8.00 PM Onwards</span>
+                  <span class="te telugufont hidden text-xl"
+                    >రాత్రి 8.00 నుండి</span
+                  >
+                </span>
+              </div>
+            </div>
           </div>
+
+          <!-- Wedding Day -->
           <div
-            class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gold"
+            class="border border-gold rounded-xl p-6 text-left"
+            style="background-color: #d4af37"
           >
-            <span class="font-semibold">Muhurtham</span>
-            <span class="text-maroon">7:00 AM - 8:30 AM</span>
-          </div>
-          <div
-            class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gold"
-          >
-            <span class="font-semibold">Lunch</span>
-            <span class="text-maroon">12:00 PM onwards</span>
+            <h4 class="text-2xl font-bold mb-1">
+              <span class="en">🪷 Wedding Day</span>
+              <span class="te telugufont hidden">🪷 వివాహ దినం</span>
+            </h4>
+            <p class="text-base opacity-75 mb-4">
+              <span class="en">26th August 2026</span>
+              <span class="te telugufont hidden text-xl">26 ఆగస్టు 2026</span>
+            </p>
+            <div class="space-y-3">
+              <div
+                class="flex justify-between items-center border-b border-gold pb-2"
+              >
+                <span class="font-semibold">
+                  <span class="en">Muhurtham</span>
+                  <span class="te telugufont hidden text-xl">ముహూర్తం</span>
+                </span>
+                <span class="text-maroon text-sm">
+                  <span class="en">9:25 AM Onwards</span>
+                  <span class="te telugufont hidden text-xl"
+                    >ఉదయం 9:25 నుండి</span
+                  >
+                </span>
+              </div>
+              <div
+                class="flex justify-between items-center border-b border-gold pb-2"
+              >
+                <span class="font-semibold">
+                  <span class="en">Lunch</span>
+                  <span class="te telugufont hidden text-xl">భోజనం</span>
+                </span>
+                <span class="text-maroon text-sm">
+                  <span class="en">12:00 PM Onwards</span>
+                  <span class="te telugufont hidden text-xl"
+                    >మధ్యాహ్నం 12:00 నుండి</span
+                  >
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Dress Code -->
+    <section id="dresscode" class="bg-maroon text-white text-center">
+      <div class="container-custom">
+        <div class="flex justify-center mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="36"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#FFD700"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="text-4xl mb-8">
+          <span class="en">Dress Code</span>
+          <span class="te telugufont hidden text-4xl">దుస్తుల నియమాలు</span>
+        </h3>
+        <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <div class="bg-white bg-opacity-10 rounded-xl p-6">
+            <p class="text-3xl mb-3">👩</p>
+            <h4 class="text-xl font-bold mb-2">
+              <span class="en">Women</span>
+              <span class="te telugufont hidden text-xl">మహిళలు</span>
+            </h4>
+            <p class="opacity-90 text-base">
+              <span class="en"
+                >Elegant formal attire in pastel or jewel tones</span
+              >
+              <span class="te telugufont hidden text-xl"
+                >పాస్టెల్ లేదా రత్నాల రంగులలో సొగసైన అలంకరణ దుస్తులు</span
+              >
+            </p>
+          </div>
+
+          <div class="bg-white bg-opacity-10 rounded-xl p-6">
+            <p class="text-3xl mb-3">👨</p>
+            <h4 class="text-xl font-bold mb-2">
+              <span class="en">Men</span>
+              <span class="te telugufont hidden text-xl">పురుషులు</span>
+            </h4>
+            <p class="opacity-90 text-base">
+              <span class="en">Suit or traditional formal wear</span>
+              <span class="te telugufont hidden text-xl"
+                >సూటు లేదా సాంప్రదాయ అలంకరణ దుస్తులు</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Saptapadi Highlight -->
+    <section id="saptapadi" class="py-20 text-center">
+      <div class="container-custom">
+        <img
+          src="./assets/Seperators/Asset 6S logo.svg"
+          class="seperatarall"
+          alt="separator"
+        />
+
+        <h3 class="text-4xl mb-4">
+          <span class="en">The Sacred Seven Steps</span>
+          <span class="te telugufont hidden">సప్తపది</span>
+        </h3>
+
+        <p class="mb-10 italic text-lg">
+          <span class="en"> Seven sacred steps... One eternal promise... </span>
+          <span class="te telugufont hidden">
+            "సప్తపది" — ఒకరి వెంట ఒకరు వేసే ఏడు పవిత్ర అడుగులు...
+          </span>
+        </p>
+
+        <!-- English -->
+        <div class="en max-w-3xl mx-auto saptapadi-card">
+          <p>💛 <strong>Seven</strong> sacred steps together...</p>
+
+          <p>
+            ❤️ <strong>Six</strong> promises to protect each other like life
+            itself...
+          </p>
+
+          <p>🌸 <strong>Five</strong> virtues to cherish forever...</p>
+
+          <p>🪔 <strong>Four</strong> directions as witnesses...</p>
+
+          <p>💍 <strong>Three</strong> sacred knots that unite two hearts...</p>
+
+          <p>🤝 <strong>Two</strong> beautiful lives...</p>
+
+          <p class="text-2xl mt-6">
+            ❤️ Becoming <strong>One</strong> —
+            <br />
+            <strong>Priya & Nikilesh</strong>
+          </p>
+        </div>
+
+        <!-- Telugu -->
+        <div class="te telugufont hidden max-w-3xl mx-auto saptapadi-card">
+          <p>💛 <b>"ఏడు"</b> అడుగులు కలిసి నడిచి...</p>
+
+          <p>❤️ <b>"ఆరు"</b> ప్రాణంలా ఒకరినొకరు కాపాడుకుంటూ...</p>
+
+          <p>🌸 <b>"ఐదు"</b> తనాలను మూటకట్టుకొని...</p>
+
+          <p>🪔 <b>"నాలుగు"</b> దిక్కుల సాక్షిగా...</p>
+
+          <p>💍 <b>"మూడు"</b> ముళ్ళ బంధంతో...</p>
+
+          <p>🤝 <b>"రెండు"</b> జీవితాలను...</p>
+
+          <p class="text-2xl mt-6">
+            ❤️ <b>"ఒక్కటి"</b> చేసే
+            <br />
+            <strong>ప్రియా - నిఖిలేష్ ల పరిణయం</strong>
+          </p>
+        </div>
+      </div>
+    </section>
     <!-- Blessings -->
     <section id="blessings" class="bg-gold text-maroon text-center">
       <div class="container-custom">
@@ -462,9 +755,9 @@
             Designed with ❤️ for the special day from Vishnu
           </p></span
         >
-        <span class="te telugufont hidden">
+        <span class="text-xl te telugufont hidden">
           <p>© 2026 ప్రియా & నిఖిలేష్ వివాహం</p>
-          <p class="text-sm mt-2 opacity-75">
+          <p class="text-xl mt-2 opacity-75">
             ఈ ప్రత్యేక శుభదినానికై ప్రేమతో ❤️ విష్ణు రూపాందించబడింది
           </p>
         </span>
@@ -472,6 +765,9 @@
     </footer>
 
     <!-- Audio -->
+    <audio id="bgm" loop preload="auto">
+      <source src="./assets/bgm.mp3" type="audio/mp3" />
+    </audio>
     <audio id="templeBell" loop preload="none">
       <source
         src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"
