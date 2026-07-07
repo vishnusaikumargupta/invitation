@@ -142,9 +142,9 @@
     </div>
 
     <!-- Floating Namaste -->
-    <div class="fixed bottom-5 right-5 z-50">
+    <!-- <div class="fixed bottom-5 right-5 z-50">
       <div class="namaste-btn" onclick="playBell()">🙏</div>
-    </div>
+    </div> -->
 
     <!-- Navbar -->
     <nav class="fixed w-full text-white z-40">
@@ -197,16 +197,25 @@
         id="mobileMenu"
       >
         <a href="#story" class="nav-link block" onclick="toggleMenu()"
-          >Our Story</a
+          ><span class="en">Our Story</span>
+          <span class="te telugufont hidden">మన కథ</span>
+        </a>
+        <a href="#venue" class="nav-link block" onclick="toggleMenu()"
+          ><span class="en"> Venue </span>
+          <span class="te telugufont hidden">వేదిక</span></a
         >
-        <a href="#venue" class="nav-link block" onclick="toggleMenu()">Venue</a>
         <a href="#schedule" class="nav-link block" onclick="toggleMenu()"
-          >Schedule</a
-        >
+          ><span class="en">Schedule</span>
+          <span class="te telugufont hidden">వివాహ కార్యక్రమాలు</span>
+        </a>
         <a href="#blessings" class="nav-link block" onclick="toggleMenu()"
-          >Blessings</a
-        >
-        <a href="#rsvp" class="nav-link block" onclick="toggleMenu()">RSVP</a>
+          ><span class="en">Blessings</span>
+          <span class="te telugufont hidden">ఆశీర్వాదాలు</span>
+        </a>
+        <a href="#rsvp" class="nav-link block" onclick="toggleMenu()"
+          ><span class="en">RSVP</span>
+          <span class="te telugufont hidden">హాజరు నిర్ధారణ</span>
+        </a>
       </div>
     </nav>
 
@@ -217,19 +226,78 @@
     <!-- Hero -->
     <section class="hero-section">
       <!-- Rotating Mandala Behind Names -->
-      <div class="name-wrapper">
-        <img src="./assets/mandala.svg" class="name-mandala" alt="Mandala" />
+      <div class="max-w-4xl mx-auto mt-10 invitation-box">
+        <!-- English -->
+        <div class="en">
+          <p class="text-xl leading-9">
+            With the divine blessings of the Almighty and the affectionate
+            blessings of our elders,
+            <br /><br />
+            we cordially invite you and your beloved family to grace the
+          </p>
 
-        <h2 class="text-5xl md:text-8xl font-bold fade-in relative z-10">
-          <span class="en">Priya Weds Nikilesh</span>
-          <!-- <span class="te telugufont hidden">ప్రియా వివాహం నిఖిలేష్ తో</span> -->
-          <span class="te telugufont hidden">ప్రియా నిఖిలేష్ ల కళ్యాణం</span>
-          <img
-            src="./assets/Seperators/Asset 12S logo.svg"
-            class="seperatar"
-            alt="seperatar"
-          />
-        </h2>
+          <!-- Couple Name -->
+          <div class="name-wrapper my-6">
+            <img
+              src="./assets/mandala.svg"
+              class="name-mandala"
+              alt="Mandala"
+            />
+
+            <h2 class="text-5xl md:text-8xl font-bold fade-in relative z-10">
+              Priya <br /><span class="text-1xl">Weds</span><br />
+              Nikilesh
+            </h2>
+
+            <img
+              src="./assets/Seperators/Asset 12S logo.svg"
+              class="seperatar"
+              alt="separator"
+            />
+          </div>
+
+          <p class="text-xl leading-9">
+            wedding ceremony. Your gracious presence and heartfelt blessings
+            will make our celebration truly memorable.
+          </p>
+        </div>
+
+        <!-- Telugu -->
+        <div class="te telugufont hidden text-2xl leading-[2.5rem]">
+          <p>
+            భగవంతుని దివ్య అనుగ్రహం, పెద్దల ఆశీస్సులతో,
+            <br /><br />
+            మా ప్రియమైన
+          </p>
+
+          <!-- Couple Name -->
+          <div class="name-wrapper my-6">
+            <img
+              src="./assets/mandala.svg"
+              class="name-mandala"
+              alt="Mandala"
+            />
+
+            <h2
+              class="text-5xl md:text-8xl font-bold fade-in relative z-10 telugufont"
+            >
+              ప్రియా - నిఖిలేష్ ‌ల కళ్యాణం
+            </h2>
+
+            <img
+              src="./assets/Seperators/Asset 12S logo.svg"
+              class="seperatar"
+              alt="separator"
+            />
+          </div>
+
+          <p>
+            పవిత్ర వివాహ మహోత్సవానికి
+            <b>తమ కుటుంబ సమేతంగా</b> విచ్చేసి, నూతన వధూవరులను ఆశీర్వదించి, ఈ
+            శుభవేళను చిరస్మరణీయంగా చేయవలసిందిగా
+            <b>సాదరంగా ఆహ్వానిస్తున్నాము.</b>
+          </p>
+        </div>
       </div>
 
       <!-- <p class="mt-4 text-xl fade-in">
@@ -720,6 +788,222 @@
         </p>
       </div>
     </section>
+    <!-- Karyanirvahakulu -->
+    <section id="coordinators" class="py-20 text-center">
+      <div class="container-custom">
+        <img
+          src="./assets/Seperators/Asset 6S logo.svg"
+          class="seperatarall"
+          alt="separator"
+        />
+
+        <h3 class="text-4xl mb-4">
+          <span class="en">Wedding Coordinators</span>
+          <span class="te telugufont hidden">కార్యనిర్వాహకులు</span>
+        </h3>
+
+        <p class="mb-10 text-lg">
+          <span class="en">
+            With the blessings of our elders and the support of our beloved
+            family.
+          </span>
+
+          <span class="te telugufont hidden">
+            పెద్దల ఆశీస్సులతో, కుటుంబ సభ్యుల సహకారంతో...
+          </span>
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- LEFT -->
+          <div
+            class="relative bg-white rounded-3xl shadow-xl border border-gold p-8"
+          >
+            <h4 class="text-2xl font-bold mb-6 text-maroon">
+              <span class="en">Family members</span>
+              <span class="te telugufont hidden">కుటుంబ సభ్యులు</span>
+            </h4>
+
+            <div class="space-y-5">
+              <div>
+                <strong>
+                  <span class="en"
+                    >Sri Dr. V. Suresh Babu, MBBS, MD, DM (Nephrology)</span
+                  >
+                  <span class="te font-bold telugufont hidden text-2xl">
+                    శ్రీ డా. వి. సురేష్ బాబు, MBBS, MD, DM (నెఫ్రాలజీ)
+                  </span>
+                </strong>
+
+                <br />
+
+                <span class="en font-bold">Smt. Jyothi</span>
+                <span class="te telugufont hidden font-bold text-2xl"
+                  >శ్రీమతి జ్యోతి</span
+                >
+              </div>
+
+              <div>
+                <strong>
+                  <span class="en">Sri V. Hari Krishna</span>
+                  <span class="te telugufont hidden text-2xl">
+                    శ్రీ వి. హరి కృష్ణ
+                  </span>
+                </strong>
+
+                <br />
+
+                <span class="en font-bold">Smt. Manjula</span>
+                <span class="te telugufont hidden font-bold text-2xl"
+                  >శ్రీమతి మంజుల
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+          <div
+            class="relative bg-white rounded-3xl shadow-xl border border-gold p-8"
+          >
+            <h4 class="text-2xl font-bold mb-6 text-maroon">
+              <span class="en">Family members</span>
+              <span class="te telugufont hidden">కుటుంబ సభ్యులు</span>
+            </h4>
+
+            <div class="space-y-5">
+              <div>
+                <strong>
+                  <span class="en"> Sri K. Rishi,B.A </span>
+
+                  <span class="te telugufont hidden text-2xl">
+                    శ్రీ కె. రిషి, B.A
+                  </span>
+                </strong>
+
+                <br />
+
+                <small>
+                  <span class="en"> Bhavani Matching Center, Gudur </span>
+
+                  <span class="te telugufont hidden text-xl">
+                    భవాని మ్యాచింగ్ సెంటర్, గూడూరు
+                  </span>
+                </small>
+
+                <br />
+
+                <span class="en font-bold"> Smt. Subhashini, MBA </span>
+
+                <span class="te telugufont hidden font-bold text-2xl">
+                  శ్రీమతి సుభాషిణి, MBA
+                </span>
+              </div>
+              <div>
+                <strong>
+                  <span class="en"> Sri K. Ram Mohan, B.A., B.L. </span>
+
+                  <span class="te telugufont hidden text-2xl">
+                    శ్రీ కె. రామ్ మోహన్, B.A., B.L.
+                  </span>
+                </strong>
+
+                <br />
+
+                <small>
+                  <span class="en">
+                    Advocate, High Court of Andhra Pradesh
+                  </span>
+
+                  <span class="te telugufont hidden text-xl">
+                    అడ్వకేట్, ఆంధ్రప్రదేశ్ హైకోర్టు
+                  </span>
+                </small>
+
+                <br />
+
+                <span class="en font-bold"> Smt. Bhavani (Advocate) </span>
+
+                <span class="te telugufont hidden font-bold text-2xl">
+                  శ్రీమతి భవాని (అడ్వకేట్)
+                </span>
+              </div>
+
+              <div>
+                <strong>
+                  <span class="en"> Sri V. Krishna Rao </span>
+
+                  <span class="te telugufont hidden text-2xl">
+                    శ్రీ వి. కృష్ణారావు
+                  </span>
+                </strong>
+
+                <br />
+
+                <small>
+                  <span class="en"> Wipro, Chennai </span>
+
+                  <span class="te telugufont hidden text-xl">
+                    విప్రో, చెన్నై
+                  </span>
+                </small>
+
+                <br />
+
+                <span class="en font-bold"> Smt. Rukmini Kumari </span>
+
+                <span class="te telugufont hidden font-bold text-2xl">
+                  శ్రీమతి రుక్మిణి కుమారి
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom -->
+        <div class="mt-16">
+          <h4 class="text-3xl mb-3">
+            <span class="en"> Awaiting Your Gracious Presence </span>
+
+            <span class="te telugufont hidden"> మీ రాకకై ఎదురుచూస్తూ... </span>
+          </h4>
+
+          <div
+            class="en flex flex-wrap justify-center gap-5 text-xl font-semibold"
+          >
+            <div><span>Vishnu Sai Kumar</span><br /><br /></div>
+
+            <span>Nithin Bharghav</span>
+
+            <span>Hem Kumar</span>
+
+            <span>Yaswanth</span>
+
+            <span>Prachitha Riya</span>
+          </div>
+
+          <div
+            class="te telugufont hidden flex flex-wrap justify-center gap-5 text-3xl font-semibold telugufont hidden te"
+          >
+            <strong>
+              <span>విష్ణు సాయి కుమార్</span> <br />
+
+              <span>నితిన్ భార్గవ్, </span>
+
+              <span>హేమ్ కుమార్,</span>
+
+              <span>యశ్వంత్,</span>
+
+              <span>ప్రచిత రియా .</span>
+            </strong>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/Seperators/Asset 6S logo.svg"
+        class="seperatarall"
+        alt="separator"
+        style="transform: rotate(180deg)"
+      />
+    </section>
 
     <!-- RSVP -->
     <section id="rsvp" class="text-center">
@@ -753,13 +1037,13 @@
         <span class="en"
           ><p>© 2026 Priya & Nikilesh Wedding</p>
           <p class="text-sm mt-2 opacity-75">
-            Designed with ❤️ for the special day from Vishnu
+            Designed with ❤️ for the special day from <b>Vishnu</b>
           </p></span
         >
         <span class="text-xl te telugufont hidden">
           <p>© 2026 ప్రియా & నిఖిలేష్ వివాహం</p>
           <p class="text-xl mt-2 opacity-75">
-            ఈ ప్రత్యేక శుభదినానికై ప్రేమతో ❤️ విష్ణు రూపాందించబడింది
+            ఈ ప్రత్యేక శుభదినానికై ప్రేమతో ❤️ <b>విష్ణు</b> రూపాందించబడింది
           </p>
         </span>
       </div>
@@ -767,7 +1051,7 @@
 
     <!-- Audio -->
     <audio id="bgm" loop preload="auto">
-      <source src="./assets/bgm.mp3" type="audio/mp3" />
+      <source src="./assets/bgm1.mp3" type="audio/mp3" />
     </audio>
     <audio id="templeBell" loop preload="none">
       <source
