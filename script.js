@@ -502,9 +502,88 @@ if (canvas) {
     const now = Date.now();
     if (now - lastCheckTime < 120) return;
     lastCheckTime = now;
-    if (getScratchedPercent() >= 40) triggerCelebration();
+    if (getScratchedPercent() >= 20) triggerCelebration();
   }
 
   // Make it accessible globally
   window.redrawScratchCard = drawScratchCard;
 }
+const inviteTextEn =
+`With the divine blessings of the Almighty and the affectionate blessings of our elders,
+we cordially invite you and your beloved family to grace the auspicious wedding ceremony
+of Priya & Nikilesh.
+
+Your gracious presence and heartfelt blessings will make our celebration truly memorable.`;
+
+const inviteTextTe =
+`భగవంతుని దివ్య అనుగ్రహం, పెద్దల ఆశీస్సులతో,
+
+మా ప్రియమైన ప్రియా – నిఖిలేష్‌ల పవిత్ర వివాహ మహోత్సవానికి
+తమ కుటుంబ సమేతంగా విచ్చేసి,
+నూతన వధూవరులను ఆశీర్వదించి,
+ఈ శుభవేళను చిరస్మరణీయంగా చేయవలసిందిగా
+సాదరంగా ఆహ్వానిస్తున్నాము.`;
+
+function typeWriter(element, text, speed = 25) {
+
+    element.innerHTML = "";
+
+    let i = 0;
+
+    function type(){
+
+        if(i >= text.length) return;
+
+        const char = text.charAt(i);
+
+        if(char === "\n"){
+            element.innerHTML += "<br>";
+        }
+        else{
+            element.innerHTML += char;
+        }
+
+        i++;
+
+        setTimeout(type, speed);
+
+    }
+
+    type();
+
+}
+const invitationBox = document.querySelector(".invitation-box");
+
+const observer = new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(!entry.isIntersecting) return;
+
+        if(document.body.classList.contains("te")){
+
+            typeWriter(
+                document.getElementById("invite-te"),
+                inviteTextTe,
+                40
+            );
+
+        }else{
+
+            typeWriter(
+                document.getElementById("invite-en"),
+                inviteTextEn,
+                22
+            );
+
+        }
+
+        observer.disconnect();
+
+    });
+
+},{
+    threshold:.5
+});
+
+observer.observe(invitationBox);
