@@ -86,6 +86,63 @@ body {
   opacity: 0;
   transform: scale(0.5);
 }
+.loader-tap-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+
+.loader-tap-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-tap-hand {
+  font-size: 2.6rem;
+  position: relative;
+  z-index: 1;
+  animation: tapBounce 1.6s ease-in-out infinite;
+}
+
+@keyframes tapBounce {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50%       { transform: scale(1.12) translateY(-4px); }
+}
+
+.loader-tap-ring {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2.5px solid #800000;
+  opacity: 0;
+  animation: tapRing 2s ease-out infinite;
+}
+
+.loader-tap-ring:nth-child(1) { animation-delay: 0s; }
+.loader-tap-ring:nth-child(2) { animation-delay: 0.6s; }
+.loader-tap-ring:nth-child(3) { animation-delay: 1.2s; }
+
+@keyframes tapRing {
+  0%   { transform: scale(0.8); opacity: 0.9; }
+  100% { transform: scale(2.6); opacity: 0;   }
+}
+
+.loader-tap-label {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.2rem, 4vw, 1.9rem);
+  color: #800000;
+  text-shadow: 0 0 12px #d4af37, 0 0 24px #d4af37;
+  letter-spacing: 0.04em;
+}
+
 #weddingLoader {
   position: fixed;
   padding: 20px;
