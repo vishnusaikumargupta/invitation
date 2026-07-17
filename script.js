@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (bell) bell.play().catch(() => {});
   };
 
-  // BGM auto-play on first user interaction
+  // BGM auto-play — try immediately, fall back to first interaction
   let bgmStarted = false;
   const bgm = document.getElementById("bgm");
 
@@ -68,8 +68,21 @@ document.addEventListener("DOMContentLoaded", function () {
       document.removeEventListener("touchstart", startBGM);
     }).catch(() => {});
   }
-  document.addEventListener("click", startBGM);
-  document.addEventListener("touchstart", startBGM);
+
+  // Try immediate autoplay (works on desktop/laptop)
+  if (bgm) {
+    bgm.volume = 0.9;
+    bgm.play().then(() => {
+      bgmStarted = true;
+    }).catch(() => {
+      // Autoplay blocked (mobile) — will start on first interaction
+      document.addEventListener("click", startBGM);
+      document.addEventListener("touchstart", startBGM);
+    });
+  } else {
+    document.addEventListener("click", startBGM);
+    document.addEventListener("touchstart", startBGM);
+  }
 
   window.toggleBGM = function () {
     if (!bgm) return;
