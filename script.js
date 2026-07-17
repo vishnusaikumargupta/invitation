@@ -60,13 +60,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const bgm = document.getElementById("bgm");
 
   function startBGM() {
-    if (!bgmStarted && bgm) {
-      bgm.volume = 0.9;
-      bgm.play().catch(() => {});
+    if (bgmStarted || !bgm) return;
+    bgm.volume = 0.9;
+    bgm.play().then(() => {
       bgmStarted = true;
-    }
-    document.removeEventListener("click", startBGM);
-    document.removeEventListener("touchstart", startBGM);
+      document.removeEventListener("click", startBGM);
+      document.removeEventListener("touchstart", startBGM);
+    }).catch(() => {});
   }
   document.addEventListener("click", startBGM);
   document.addEventListener("touchstart", startBGM);
